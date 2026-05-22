@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0060)file:///C:/Users/jgamarra/Downloads/alta_cta_cte%20(27).html -->
+<!-- saved from url=(0060)file:///C:/Users/jgamarra/Downloads/alta_cta_cte%20(28).html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -865,14 +865,9 @@ async function prepararYEnviar() {
     add('Fecha Firma', g('fecha-firma'));
     add('Lugar', g('lugar'));
 
-    // Firma digital como imagen
+    // Firma como texto
     const sigURL = getSignatureDataURL();
-    if (sigURL) {
-      const b64 = sigURL.split(',')[1];
-      const bytes = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
-      const blob = new Blob([bytes], {type:'image/png'});
-      fd.append('Firma Digital', blob, 'firma.png');
-    }
+    add('Firma Digital', sigURL ? '✓ Firma capturada' : 'Sin firma');
 
     // Archivos: solo listar nombres (Formspree free no acepta archivos)
     const archivos = ['inp-dni-compra','inp-dni-retira','inp-afip','inp-iibb','inp-estatuto','inp-otro']
