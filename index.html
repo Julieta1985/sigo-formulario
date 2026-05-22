@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0060)file:///C:/Users/jgamarra/Downloads/alta_cta_cte%20(26).html -->
+<!-- saved from url=(0060)file:///C:/Users/jgamarra/Downloads/alta_cta_cte%20(27).html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -874,19 +874,12 @@ async function prepararYEnviar() {
       fd.append('Firma Digital', blob, 'firma.png');
     }
 
-    // Archivos adjuntos
-    ['inp-dni-compra','inp-dni-retira','inp-afip','inp-iibb','inp-estatuto','inp-otro'].forEach(id => {
-      const inp = document.getElementById(id);
-      if (inp?.files[0]?.size > 0) fd.append(inp.name || id, inp.files[0]);
-    });
-
-    // Nota sobre documentos
-    const docPendientes = ['inp-dni-compra','inp-dni-retira','inp-afip','inp-iibb','inp-estatuto','inp-otro']
-      .map(id => document.getElementById(id))
-      .filter(inp => inp?.files[0]?.size > 0)
-      .map(inp => fileNames[inp.id] || inp.files[0].name)
-      .join(', ');
-    if (docPendientes) add('Documentos adjuntos', docPendientes);
+    // Archivos: solo listar nombres (Formspree free no acepta archivos)
+    const archivos = ['inp-dni-compra','inp-dni-retira','inp-afip','inp-iibb','inp-estatuto','inp-otro']
+      .map(id => { const inp = document.getElementById(id); return inp?.files[0]?.name || null; })
+      .filter(Boolean);
+    if (archivos.length) add('Documentos a recibir', archivos.join(', '));
+    add('AVISO', 'Responder este mail adjuntando los documentos indicados');
 
     const res = await fetch('https://formspree.io/f/mqejbedz', {
       method: 'POST',
