@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)file:///C:/Users/jgamarra/Downloads/alta_cta_cte%20(26).html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alta Cuenta Corriente – Sigo Espacios Funcionales</title>
+<script src="./index.html_files/email.min.js.descarga" onerror="console.warn(&#39;EmailJS CDN no cargó&#39;)"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap');
+  :root {
+    --gray-dark:    #2c2c2c;
+    --gray-header:  #4a4a4a;
+    --gray-section: #6b6b6b;
+    --gray-bg:      #f0f0f0;
+    --gray-light:   #e4e4e4;
+    --gray-pale:    #f7f7f7;
+    --gray-border:  #c0c0c0;
+    --white:        #ffffff;
+    --line:         #aaaaaa;
+    --green:        #2e7d52;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Barlow', sans-serif; font-size: 9pt; color: var(--gray-dark); background: #cccccc; padding: 20px; }
+
+  /* SETUP BANNER */
+  .setup-banner {
+    width: 210mm; margin: 0 auto 10px;
+    background: #fff8e1; border: 1.5px solid #f0c040;
+    padding: 10px 14px; border-radius: 2px;
+    font-size: 8pt; color: #6b4f00; line-height: 1.6;
+  }
+  .setup-banner strong { font-size: 9pt; display: block; margin-bottom: 4px; }
+  .setup-banner code {
+    background: #ffeea0; padding: 1px 5px; border-radius: 2px;
+    font-family: monospace; font-size: 8pt;
+  }
+  .setup-banner .close-banner {
+    float: right; cursor: pointer; font-size: 12pt; line-height: 1;
+    color: #a07800; margin-left: 8px;
+  }
+
+  /* TOOLBAR */
+  .toolbar { width: 210mm; margin: 0 auto 12px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px;
+    font-family: 'Barlow', sans-serif; font-size: 8.5pt; font-weight: 600;
+    letter-spacing: 0.8px; cursor: pointer; border: none; border-radius: 2px;
+    text-transform: uppercase; transition: opacity .15s;
+  }
+  .btn:hover { opacity: .85; }
+  .btn-primary   { background: var(--gray-header); color: #fff; }
+  .btn-send      { background: var(--green); color: #fff; font-size: 9.5pt; padding: 10px 22px; }
+  .btn-secondary { background: var(--gray-light); color: var(--gray-header); border: 1.5px solid var(--gray-border); }
+  .btn:disabled  { opacity: .5; cursor: not-allowed; }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+    padding: 12px 24px; border-radius: 4px; font-size: 9pt; font-weight: 600;
+    color: #fff; z-index: 9999; opacity: 0; transition: opacity .3s;
+    pointer-events: none; max-width: 320px; text-align: center;
+  }
+  .toast.show { opacity: 1; }
+  .toast.ok   { background: var(--green); }
+  .toast.err  { background: #c0392b; }
+
+  /* PAGE */
+  .page { width: 210mm; min-height: 297mm; background: var(--white); margin: 0 auto; padding: 11mm 13mm 10mm; box-shadow: 0 4px 24px rgba(0,0,0,.18); }
+
+  /* HEADER */
+  .doc-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 3px solid var(--gray-header); padding-bottom: 8px; margin-bottom: 8px; }
+  .logo-zone  { display: flex; align-items: center; min-width: 120px; min-height: 48px; }
+  #logo-img   { max-height: 54px; max-width: 160px; object-fit: contain; display: block; }
+  .doc-meta   { text-align: right; line-height: 1.6; }
+  .doc-meta strong { font-family: 'Barlow Condensed', sans-serif; font-size: 11pt; font-weight: 700; color: var(--gray-header); letter-spacing: 1px; display: block; }
+  .doc-meta span   { font-size: 7pt; color: var(--gray-section); }
+  .meta-input { width: 90px; border: none; border-bottom: 1px solid #aaa; background: transparent; font-family: 'Barlow',sans-serif; font-size: 7.5pt; color: var(--gray-dark); outline: none; padding: 0 2px; }
+  .doc-title { background: var(--gray-header); color: #fff; font-family: 'Barlow Condensed', sans-serif; font-size: 12pt; font-weight: 700; letter-spacing: 2px; text-align: center; padding: 5px 0 6px; margin-bottom: 9px; }
+
+  /* NUM INTERNO */
+  .num-interno { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; flex-wrap: wrap; }
+  .ni-label    { font-size: 7pt; font-weight: 700; color: var(--gray-header); text-transform: uppercase; letter-spacing: .8px; white-space: nowrap; }
+  .num-box     { display: flex; gap: 3px; }
+  .num-box input { width: 22px; height: 22px; border: 1.5px solid var(--gray-section); background: var(--white); text-align: center; font-family: 'Barlow',sans-serif; font-size: 10pt; font-weight: 600; color: var(--gray-dark); outline: none; padding: 0; }
+  .num-box input:focus { border-color: var(--gray-dark); background: #edf2f4; }
+  .date-input { height: 19px; border: none; border-bottom: 1px solid #aaa; background: transparent; font-family: 'Barlow',sans-serif; font-size: 8pt; color: var(--gray-dark); outline: none; }
+
+  /* SECTIONS */
+  .section       { margin-bottom: 8px; }
+  .section-title { background: var(--gray-bg); border-left: 4px solid var(--gray-section); font-family: 'Barlow Condensed', sans-serif; font-size: 9pt; font-weight: 700; letter-spacing: 1.5px; color: var(--gray-header); padding: 3px 8px; margin-bottom: 6px; text-transform: uppercase; }
+  .subsection-title { font-size: 7pt; font-weight: 700; color: var(--gray-header); letter-spacing: 1px; text-transform: uppercase; padding: 4px 0 3px 2px; border-bottom: 1px dashed var(--gray-border); margin-bottom: 5px; margin-top: 6px; }
+
+  /* FIELD GRID */
+  .fg  { display: grid; gap: 5px 10px; padding: 0 2px; }
+  .fg + .fg { margin-top: 5px; }
+  .c1  { grid-template-columns: 1fr; }
+  .c2  { grid-template-columns: 1fr 1fr; }
+  .c3  { grid-template-columns: 1fr 1fr 1fr; }
+  .c31 { grid-template-columns: 1.5fr 1fr 1fr; }
+  .field { display: flex; flex-direction: column; gap: 2px; }
+  .field label { font-size: 6.5pt; font-weight: 600; color: var(--gray-section); letter-spacing: .4px; text-transform: uppercase; }
+  .field input[type="text"], .field input[type="email"], .field input[type="tel"] {
+    height: 19px; border: none; border-bottom: 1px solid var(--line); background: var(--gray-pale);
+    padding: 0 4px; font-family: 'Barlow',sans-serif; font-size: 8.5pt; color: var(--gray-dark);
+    outline: none; width: 100%; transition: border-color .15s, background .15s;
+  }
+  .field input:focus { border-bottom-color: var(--gray-header); background: #edf2f4; }
+  .field textarea { border: none; border-bottom: 1px solid var(--line); background: var(--gray-pale); padding: 3px 4px; font-family: 'Barlow',sans-serif; font-size: 8.5pt; color: var(--gray-dark); outline: none; width: 100%; resize: none; }
+
+  /* TABLAS */
+  .ref-table { width: 100%; border-collapse: collapse; margin-top: 3px; }
+  .ref-table thead tr { background: var(--gray-light); }
+  .ref-table th { text-align: left; font-weight: 700; font-size: 6.5pt; color: var(--gray-section); letter-spacing: .5px; text-transform: uppercase; padding: 4px 6px; border: 1px solid var(--gray-border); }
+  .ref-table td { border: 1px solid var(--gray-border); padding: 0; }
+  .ref-table td input { border: none; background: var(--gray-pale); height: 19px; padding: 0 6px; font-family: 'Barlow',sans-serif; font-size: 8pt; color: var(--gray-dark); outline: none; width: 100%; }
+  .ref-table td input:focus { background: #edf2f4; }
+
+  /* FIRMA DIGITAL */
+  .sig-wrapper { display: flex; flex-direction: column; gap: 3px; }
+  .sig-wrapper label { font-size: 6.5pt; font-weight: 600; color: var(--gray-section); text-transform: uppercase; letter-spacing: .4px; }
+  .sig-area { position: relative; border: 1px solid var(--line); background: var(--white); border-radius: 2px; }
+  .sig-area canvas { display: block; cursor: crosshair; touch-action: none; width: 100%; height: 62px; }
+  .sig-hint { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 7.5pt; color: #bbb; pointer-events: none; text-align: center; transition: opacity .2s; }
+  .sig-area.has-sig .sig-hint { opacity: 0; }
+  .sig-btns { display: flex; gap: 5px; margin-top: 3px; }
+  .sig-btn { font-family: 'Barlow', sans-serif; font-size: 6.5pt; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; padding: 3px 8px; border: 1px solid var(--gray-border); background: var(--gray-pale); color: var(--gray-section); cursor: pointer; border-radius: 1px; }
+  .sig-btn.clear { color: #c0392b; border-color: #e0b0ad; }
+  .sig-btn:hover { background: var(--gray-light); }
+
+  /* DNI ADJUNTO */
+  .dni-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; padding: 0 2px; }
+  .dni-item { display: flex; flex-direction: column; gap: 3px; }
+  .dni-item label { font-size: 6.5pt; font-weight: 600; color: var(--gray-section); text-transform: uppercase; letter-spacing: .4px; }
+  .dni-drop {
+    display: flex; align-items: center; gap: 8px;
+    border: 1.5px dashed var(--gray-border); background: var(--gray-pale);
+    padding: 7px 10px; cursor: pointer; transition: background .15s, border-color .15s; min-height: 44px; border-radius: 2px;
+  }
+  .dni-drop:hover { background: var(--gray-light); border-color: var(--gray-section); }
+  .dni-drop.has-file { border-style: solid; border-color: #5a9e6e; background: #f0faf3; }
+  .dni-drop .dni-icon { font-size: 18pt; flex-shrink: 0; }
+  .dni-drop .dni-info { font-size: 7pt; color: var(--gray-section); line-height: 1.5; }
+  .dni-drop .dni-info .fname { font-weight: 700; color: var(--gray-dark); font-size: 7.5pt; display: block; }
+  .dni-drop .dni-remove { margin-left: auto; font-size: 11pt; color: #c0392b; cursor: pointer; padding: 0 2px; flex-shrink: 0; display: none; }
+  .dni-drop.has-file .dni-remove { display: block; }
+  .dni-preview { display: none; max-height: 70px; max-width: 100%; margin-top: 4px; border: 1px solid var(--gray-border); border-radius: 2px; object-fit: cover; }
+  .dni-preview.visible { display: block; }
+  .attach-input { display: none; }
+
+  /* DECLARACIÓN JURADA */
+  .dj-box { border: 1.5px solid var(--gray-section); background: var(--gray-pale); padding: 7px 10px; }
+  .dj-intro { font-size: 8pt; font-weight: 500; font-style: italic; color: var(--gray-dark); margin-bottom: 5px; }
+  .dj-item { display: flex; align-items: flex-start; gap: 7px; font-size: 8pt; color: var(--gray-dark); margin-bottom: 3px; line-height: 1.4; cursor: pointer; user-select: none; }
+  .dj-check { width: 11px; height: 11px; border: 1.5px solid var(--gray-section); background: var(--white); flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; font-size: 8pt; color: var(--gray-header); font-weight: 700; transition: background .1s; }
+  .dj-check.checked { background: var(--gray-header); color: #fff; }
+  .dj-firma { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; padding-top: 7px; border-top: 1px dashed var(--gray-border); }
+  .firma-f { display: flex; flex-direction: column; gap: 2px; }
+  .firma-f label { font-size: 6.5pt; font-weight: 600; color: var(--gray-section); text-transform: uppercase; letter-spacing: .4px; }
+  .firma-f input { height: 20px; border: none; border-bottom: 1.5px solid var(--gray-dark); background: transparent; font-family: 'Barlow',sans-serif; font-size: 8.5pt; color: var(--gray-dark); outline: none; width: 100%; padding: 0 2px; }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 2px dashed #999; margin: 10px 0; }
+
+  /* USO INTERNO */
+  .interno-box { border: 2px solid var(--gray-section); background: var(--gray-bg); padding: 7px 10px; }
+  .interno-title { font-family: 'Barlow Condensed', sans-serif; font-size: 10pt; font-weight: 700; letter-spacing: 2px; color: var(--gray-header); text-transform: uppercase; margin-bottom: 7px; padding-bottom: 4px; border-bottom: 2px solid var(--gray-section); display: flex; align-items: center; gap: 7px; }
+  .interno-title::before { content: '★'; font-size: 9pt; color: var(--gray-section); }
+  .int-label { font-size: 7pt; font-weight: 700; color: var(--gray-header); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px; margin-top: 5px; }
+  .check-row { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; margin-bottom: 5px; }
+  .check-item { display: flex; align-items: center; gap: 5px; font-size: 8pt; font-weight: 500; cursor: pointer; user-select: none; }
+  .check-item.rechazo { flex: 1; }
+  .i-check { width: 11px; height: 11px; border: 1.5px solid var(--gray-section); background: var(--white); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 8pt; color: var(--gray-header); font-weight: 700; transition: background .1s; }
+  .i-check.checked { background: var(--gray-header); color: #fff; }
+  .rechazo-line { flex: 1; height: 17px; border: none; border-bottom: 1px solid var(--gray-section); background: var(--white); margin-left: 4px; font-family: 'Barlow',sans-serif; font-size: 8pt; color: var(--gray-dark); outline: none; padding: 0 3px; }
+  .int-fg { display: grid; gap: 5px 10px; margin-top: 5px; }
+  .int-c2 { grid-template-columns: 1fr 1fr; }
+  .int-field { display: flex; flex-direction: column; gap: 2px; }
+  .int-field label { font-size: 6.5pt; font-weight: 600; color: var(--gray-section); text-transform: uppercase; letter-spacing: .4px; }
+  .int-field input, .int-field textarea { border: none; border-bottom: 1.5px solid var(--gray-section); background: var(--white); font-family: 'Barlow',sans-serif; font-size: 8.5pt; color: var(--gray-dark); outline: none; width: 100%; padding: 0 4px; }
+  .int-field input { height: 19px; }
+  .int-field textarea { padding: 3px 4px; resize: none; }
+  .int-field input:focus, .int-field textarea:focus { border-bottom-color: var(--gray-dark); background: #edf2f4; }
+  .auth-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 10px; padding-top: 7px; border-top: 1px dashed var(--gray-border); }
+  .auth-block { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .auth-block .sign-line { width: 100%; height: 26px; border-bottom: 1.5px solid var(--gray-section); background: var(--white); }
+  .auth-block .auth-label { font-size: 6.5pt; font-weight: 700; color: var(--gray-section); text-transform: uppercase; letter-spacing: .5px; margin-top: 3px; text-align: center; }
+  .auth-block .auth-sub   { font-size: 6pt; color: var(--line); text-align: center; }
+
+  /* PRINT */
+  @media print {
+    body { background: none; padding: 0; }
+    .toolbar, .setup-banner, .toast { display: none !important; }
+    .page { width: 100%; min-height: auto; padding: 10mm 12mm 8mm; box-shadow: none; margin: 0; }
+    input, textarea { background: transparent !important; }
+    .dni-drop, .sig-area, .dj-check, .i-check,
+    .interno-box, .dj-box, .section-title, .doc-title, .interno-title {
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .dni-preview.visible { display: block; }
+  }
+  /* BANNER NAVEGADOR INCOMPATIBLE */
+  .browser-warn {
+    display: none;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 99999;
+    align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .browser-warn.show { display: flex; }
+  .browser-warn-box {
+    background: #fff;
+    border-radius: 8px;
+    padding: 28px 24px;
+    max-width: 360px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Barlow', Arial, sans-serif;
+  }
+  .browser-warn-box .bw-icon { font-size: 42pt; margin-bottom: 12px; }
+  .browser-warn-box h2 { font-size: 14pt; font-weight: 700; color: #2c2c2c; margin-bottom: 10px; }
+  .browser-warn-box p  { font-size: 9.5pt; color: #555; line-height: 1.6; margin-bottom: 16px; }
+  .browser-warn-box .bw-link {
+    display: block;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 9pt;
+    font-weight: 700;
+    color: #2c2c2c;
+    word-break: break-all;
+    margin-bottom: 14px;
+    letter-spacing: 0.3px;
+  }
+  .bw-btn {
+    display: inline-block;
+    background: #4a4a4a;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 11px 24px;
+    font-family: 'Barlow', Arial, sans-serif;
+    font-size: 10pt;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .bw-btn.secondary {
+    background: transparent;
+    color: #888;
+    font-size: 8.5pt;
+    padding: 6px;
+  }
+</style>
+</head>
+<body>
+
+<!-- BANNER NAVEGADOR INCOMPATIBLE -->
+<div class="browser-warn" id="browser-warn">
+  <div class="browser-warn-box">
+    <div class="bw-icon">⚠️</div>
+    <h2>Abrí el formulario en Chrome o Safari</h2>
+    <p>Estás usando el navegador interno de WhatsApp o una app similar, que no permite firmar, adjuntar archivos ni enviar el formulario.</p>
+    <p><strong>Copiá este link y pegalo en Chrome o Safari:</strong></p>
+    <div class="bw-link" id="bw-url">sigoespaciosctacte.netlify.app</div>
+    <button class="bw-btn" onclick="copiarLink()">📋 Copiar link</button>
+    <button class="bw-btn secondary" onclick="document.getElementById(&#39;browser-warn&#39;).classList.remove(&#39;show&#39;)">Continuar de todas formas</button>
+  </div>
+</div>
+
+<!-- Setup banner (configuración completada) -->
+<div class="setup-banner" id="setup-banner" style="display:none"></div>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <button class="btn btn-send" id="btn-enviar" onclick="prepararYEnviar()">📧 Enviar por e-mail</button>
+  <button class="btn btn-primary" onclick="window.print()">🖨️ Imprimir / PDF</button>
+  <button class="btn btn-secondary" onclick="limpiarFormulario()">🗑 Limpiar todo</button>
+  <button class="btn btn-secondary" onclick="document.getElementById(&#39;logo-input&#39;).click()">🖼 Cambiar logo</button>
+  <input type="file" id="logo-input" accept="image/*" onchange="cargarLogo(event)">
+</div>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="logo-zone">
+      <img id="logo-img" alt="Logo Sigo" src="file:///C:/logo.png">
+    </div>
+    <div class="doc-meta">
+      <strong>SOLICITUD DE ALTA – CUENTA CORRIENTE</strong>
+      <span>Versión 1.0 &nbsp;|&nbsp; Uso exclusivo comercial</span><br>
+      <span>Nº de formulario: <input class="meta-input" id="nro-formulario" type="text" placeholder="___________"></span>
+    </div>
+  </div>
+
+  <div style="text-align:right; font-size:7pt; color:var(--gray-section); margin-bottom:4px;">
+    Consultas: <a href="mailto:facturacion@sigoespacios.com.ar" style="color:var(--gray-section);text-decoration:none;">facturacion@sigoespacios.com.ar</a>
+  </div>
+
+  <div class="doc-title">SOLICITUD DE ALTA – CUENTA CORRIENTE CLIENTES</div>
+
+  <!-- FORMULARIO NETLIFY -->
+  <form id="alta-form" name="alta-cta-cte" method="POST" enctype="multipart/form-data">
+  <!-- Formspree: asunto dinámico -->
+  <input type="hidden" name="_subject" id="form-subject" value="Alta Cta. Cte.">
+  <!-- Firma digital (se completa por JS antes de enviar) -->
+  <textarea name="Firma Digital" id="firma-digital-hidden" style="display:none"></textarea>
+  <!-- Estados declaración jurada -->
+  <input type="hidden" name="DJ - Datos verídicos" id="dj-h1" value="No marcado">
+  <input type="hidden" name="DJ - Sin quiebra" id="dj-h2" value="No marcado">
+  <input type="hidden" name="DJ - Sin cheques rechazados" id="dj-h3" value="No marcado">
+  <input type="hidden" name="DJ - Acepta verificaciones" id="dj-h4" value="No marcado">
+  <input type="hidden" name="DJ - Acepta cancelación" id="dj-h5" value="No marcado">
+
+  <!-- Nº INTERNO + FECHA -->
+  <div class="num-interno">
+    <span class="ni-label">Nº interno de cliente:</span>
+    <div class="num-box">
+      <input type="text" maxlength="1" class="dig" name="Nro.Interno">
+      <input type="text" maxlength="1" class="dig" name="Nro.Interno">
+      <input type="text" maxlength="1" class="dig" name="Nro.Interno">
+      <input type="text" maxlength="1" class="dig" name="Nro.Interno">
+      <input type="text" maxlength="1" class="dig" name="Nro.Interno">
+    </div>
+    <span class="ni-label" style="margin-left:18px">Fecha de solicitud:</span>
+    <input class="date-input" id="fecha-solicitud" type="date">
+  </div>
+
+  <!-- 1. DATOS DE LA EMPRESA -->
+  <div class="section">
+    <div class="section-title">1. Datos del Solicitante / Empresa</div>
+    <div class="fg c1"><div class="field"><label>Razón Social</label><input type="text" id="razon-social" name="Razón Social"></div></div>
+    <div class="fg c3">
+      <div class="field"><label>CUIT</label><input type="text" id="cuit" name="CUIT"></div>
+      <div class="field"><label>Ingresos Brutos (IIBB)</label><input type="text" id="iibb" name="IIBB"></div>
+      <div class="field">
+        <label>Condición frente al IVA</label>
+        <select id="iva" name="Condición IVA" style="height:19px;border:none;border-bottom:1px solid var(--line);background:var(--gray-pale);font-family:&#39;Barlow&#39;,sans-serif;font-size:8.5pt;color:var(--gray-dark);outline:none;width:100%;padding:0 4px;appearance:auto;">
+          <option value="">— Seleccioná —</option>
+          <option>Responsable Inscripto</option>
+          <option>Monotributista</option>
+          <option>Exento</option>
+          <option>No Responsable</option>
+          <option>Consumidor Final</option>
+        </select>
+      </div>
+    </div>
+    <div class="fg c2">
+      <div class="field"><label>Domicilio Legal</label><input type="text" id="dom-legal" name="Domicilio Legal"></div>
+      <div class="field"><label>Domicilio de Entrega / Depósito</label><input type="text" id="dom-entrega" name="Domicilio de Entrega"></div>
+    </div>
+    <div class="fg c3">
+      <div class="field"><label>Teléfono principal</label><input type="tel" id="tel-principal" name="Teléfono Principal"></div>
+      <div class="field"><label>E-mail principal</label><input type="email" id="email-principal" name="E-mail Principal"></div>
+      <div class="field"><label>Sitio web / Redes</label><input type="text" id="web" name="Web / Redes"></div>
+    </div>
+    <div class="fg c2" style="margin-top:5px">
+      <div class="field">
+        <label>Crédito Solicitado ($)</label>
+        <input type="text" id="credito-solicitado" placeholder="Ej: 500.000">
+      </div>
+      <div class="field">
+        <label>Rubro / Actividad</label>
+        <input type="text" id="rubro" name="Rubro / Actividad">
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. CONTACTOS -->
+  <div class="section">
+    <div class="section-title">2. Contactos</div>
+    <div class="subsection-title">Contacto de Compras</div>
+    <div class="fg c3">
+      <div class="field"><label>Nombre y Apellido</label><input type="text" id="c-compras-nombre" name="Compras - Nombre"></div>
+      <div class="field"><label>Teléfono / Celular</label><input type="tel" id="c-compras-tel" name="Compras - Teléfono"></div>
+      <div class="field"><label>E-mail</label><input type="email" id="c-compras-email" name="Compras - E-mail"></div>
+    </div>
+    <div class="subsection-title">Contacto de Pagos / Administración</div>
+    <div class="fg c3">
+      <div class="field"><label>Nombre y Apellido</label><input type="text" id="c-pagos-nombre" name="Pagos - Nombre"></div>
+      <div class="field"><label>Teléfono / Celular</label><input type="tel" id="c-pagos-tel" name="Pagos - Teléfono"></div>
+      <div class="field"><label>E-mail</label><input type="email" id="c-pagos-email" name="Pagos - E-mail"></div>
+    </div>
+  </div>
+
+  <!-- 3. PERSONAS AUTORIZADAS -->
+  <div class="section">
+    <div class="section-title">3. Personas Autorizadas</div>
+    <div class="subsection-title">Autorizado/a para Comprar</div>
+    <div class="fg c3">
+      <div class="field"><label>Nombre</label><input type="text" id="aut-compra-nombre" name="Autorizado Comprar - Nombre"></div>
+      <div class="field"><label>Apellido</label><input type="text" id="aut-compra-apellido" name="Autorizado Comprar - Apellido"></div>
+      <div class="field"><label>DNI</label><input type="text" id="aut-compra-dni" name="Autorizado Comprar - DNI"></div>
+    </div>
+    <div class="subsection-title">Autorizado/a para Retirar Mercadería</div>
+    <div class="fg c3">
+      <div class="field"><label>Nombre</label><input type="text" id="aut-retira-nombre" name="Autorizado Retirar - Nombre"></div>
+      <div class="field"><label>Apellido</label><input type="text" id="aut-retira-apellido" name="Autorizado Retirar - Apellido"></div>
+      <div class="field"><label>DNI</label><input type="text" id="aut-retira-dni" name="Autorizado Retirar - DNI"></div>
+    </div>
+  </div>
+
+  <!-- 4. DNI ADJUNTOS -->
+  <div class="section">
+    <div class="section-title">4. Fotos de DNI — Frente</div>
+    <div class="dni-grid">
+      <div class="dni-item">
+        <label>DNI del autorizado para Comprar</label>
+        <div class="dni-drop" id="drop-dni-compra" onclick="triggerAttach(&#39;inp-dni-compra&#39;)">
+          <span class="dni-icon">🪪</span>
+          <div class="dni-info"><span class="fname">Sin archivo</span>Tocá para adjuntar foto o PDF</div>
+          <span class="dni-remove" onclick="removeAttach(event,&#39;inp-dni-compra&#39;,&#39;drop-dni-compra&#39;,&#39;prev-dni-compra&#39;)">✕</span>
+        </div>
+        <input type="file" class="attach-input" id="inp-dni-compra" name="DNI - Autorizado Comprar" accept="image/*,.pdf" onchange="handleAttach(this,&#39;drop-dni-compra&#39;,&#39;prev-dni-compra&#39;)">
+        <img class="dni-preview" id="prev-dni-compra" alt="DNI comprador">
+      </div>
+      <div class="dni-item">
+        <label>DNI del autorizado para Retirar</label>
+        <div class="dni-drop" id="drop-dni-retira" onclick="triggerAttach(&#39;inp-dni-retira&#39;)">
+          <span class="dni-icon">🪪</span>
+          <div class="dni-info"><span class="fname">Sin archivo</span>Tocá para adjuntar foto o PDF</div>
+          <span class="dni-remove" onclick="removeAttach(event,&#39;inp-dni-retira&#39;,&#39;drop-dni-retira&#39;,&#39;prev-dni-retira&#39;)">✕</span>
+        </div>
+        <input type="file" class="attach-input" id="inp-dni-retira" name="DNI - Autorizado Retirar" accept="image/*,.pdf" onchange="handleAttach(this,&#39;drop-dni-retira&#39;,&#39;prev-dni-retira&#39;)">
+        <img class="dni-preview" id="prev-dni-retira" alt="DNI retira">
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. DOCUMENTACIÓN ADJUNTA -->
+  <div class="section">
+    <div class="section-title">5. Documentación Adjunta</div>
+    <div class="dni-grid">
+
+      <div class="dni-item">
+        <label>Constancia de Inscripción AFIP</label>
+        <div class="dni-drop" id="drop-afip" onclick="triggerAttach(&#39;inp-afip&#39;)">
+          <span class="dni-icon">📄</span>
+          <div class="dni-info"><span class="fname">Sin archivo</span>Tocá para adjuntar foto o PDF</div>
+          <span class="dni-remove" onclick="removeAttach(event,&#39;inp-afip&#39;,&#39;drop-afip&#39;,&#39;prev-afip&#39;)">✕</span>
+        </div>
+        <input type="file" class="attach-input" id="inp-afip" name="Constancia AFIP" accept="image/*,.pdf" onchange="handleAttach(this,&#39;drop-afip&#39;,&#39;prev-afip&#39;)">
+        <img class="dni-preview" id="prev-afip" alt="AFIP">
+      </div>
+
+      <div class="dni-item">
+        <label>Constancia de Ingresos Brutos (IIBB)</label>
+        <div class="dni-drop" id="drop-iibb" onclick="triggerAttach(&#39;inp-iibb&#39;)">
+          <span class="dni-icon">📄</span>
+          <div class="dni-info"><span class="fname">Sin archivo</span>Tocá para adjuntar foto o PDF</div>
+          <span class="dni-remove" onclick="removeAttach(event,&#39;inp-iibb&#39;,&#39;drop-iibb&#39;,&#39;prev-iibb&#39;)">✕</span>
+        </div>
+        <input type="file" class="attach-input" id="inp-iibb" name="Constancia IIBB" accept="image/*,.pdf" onchange="handleAttach(this,&#39;drop-iibb&#39;,&#39;prev-iibb&#39;)">
+        <img class="dni-preview" id="prev-iibb" alt="IIBB">
+      </div>
+
+      <div class="dni-item">
+        <label>Estatuto / Contrato Social</label>
+        <div class="dni-drop" id="drop-estatuto" onclick="triggerAttach(&#39;inp-estatuto&#39;)">
+          <span class="dni-icon">📋</span>
+          <div class="dni-info"><span class="fname">Sin archivo</span>Tocá para adjuntar foto o PDF</div>
+          <span class="dni-remove" onclick="removeAttach(event,&#39;inp-estatuto&#39;,&#39;drop-estatuto&#39;,&#39;prev-estatuto&#39;)">✕</span>
+        </div>
+        <input type="file" class="attach-input" id="inp-estatuto" name="Estatuto / Contrato Social" accept="image/*,.pdf" onchange="handleAttach(this,&#39;drop-estatuto&#39;,&#39;prev-estatuto&#39;)">
+        <img class="dni-preview" id="prev-estatuto" alt="Estatuto">
+      </div>
+
+      <div class="dni-item">
+        <label>Otro documento</label>
+        <div class="dni-drop" id="drop-otro" onclick="triggerAttach(&#39;inp-otro&#39;)">
+          <span class="dni-icon">📎</span>
+          <div class="dni-info"><span class="fname">Sin archivo</span>Tocá para adjuntar foto o PDF</div>
+          <span class="dni-remove" onclick="removeAttach(event,&#39;inp-otro&#39;,&#39;drop-otro&#39;,&#39;prev-otro&#39;)">✕</span>
+        </div>
+        <input type="file" class="attach-input" id="inp-otro" name="Otro Documento" accept="image/*,.pdf" onchange="handleAttach(this,&#39;drop-otro&#39;,&#39;prev-otro&#39;)">
+        <img class="dni-preview" id="prev-otro" alt="Otro">
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 6. DATOS BANCARIOS -->
+  <div class="section">
+    <div class="section-title">6. Datos Bancarios</div>
+    <div class="fg c31">
+      <div class="field"><label>Banco</label><input type="text" id="banco" name="Banco"></div>
+      <div class="field"><label>Sucursal</label><input type="text" id="banco-suc" name="Banco - Sucursal"></div>
+      <div class="field"><label>Tipo de Cuenta</label><input type="text" id="banco-tipo" name="Banco - Tipo de Cuenta"></div>
+    </div>
+    <div class="fg c3">
+      <div class="field"><label>Nº de Cuenta</label><input type="text" id="banco-nro" name="Banco - Nro. Cuenta"></div>
+      <div class="field"><label>CBU</label><input type="text" id="banco-cbu" name="CBU"></div>
+      <div class="field"><label>Alias</label><input type="text" id="banco-alias" name="Alias"></div>
+    </div>
+  </div>
+
+  <!-- 7. REFERENCIAS COMERCIALES -->
+  <div class="section">
+    <div class="section-title">7. Referencias Comerciales</div>
+    <table class="ref-table">
+      <thead><tr>
+        <th style="width:34%">Razón Social / Proveedor</th>
+        <th style="width:24%">Contacto</th>
+        <th style="width:19%">Teléfono</th>
+        <th style="width:23%">E-mail</th>
+      </tr></thead>
+      <tbody>
+        <tr><td><input type="text" class="rc-rs" name="Ref.Comercial - Empresa[]"></td><td><input type="text" class="rc-ct" name="Ref.Comercial - Contacto[]"></td><td><input type="text" class="rc-tel" name="Ref.Comercial - Teléfono[]"></td><td><input type="text" class="rc-mail" name="Ref.Comercial - E-mail[]"></td></tr>
+        <tr><td><input type="text" class="rc-rs" name="Ref.Comercial - Empresa[]"></td><td><input type="text" class="rc-ct" name="Ref.Comercial - Contacto[]"></td><td><input type="text" class="rc-tel" name="Ref.Comercial - Teléfono[]"></td><td><input type="text" class="rc-mail" name="Ref.Comercial - E-mail[]"></td></tr>
+        <tr><td><input type="text" class="rc-rs" name="Ref.Comercial - Empresa[]"></td><td><input type="text" class="rc-ct" name="Ref.Comercial - Contacto[]"></td><td><input type="text" class="rc-tel" name="Ref.Comercial - Teléfono[]"></td><td><input type="text" class="rc-mail" name="Ref.Comercial - E-mail[]"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 8. REFERENCIAS BANCARIAS -->
+  <div class="section">
+    <div class="section-title">8. Referencias Bancarias</div>
+    <table class="ref-table">
+      <thead><tr>
+        <th style="width:30%">Banco</th>
+        <th style="width:24%">Contacto</th>
+        <th style="width:20%">Teléfono</th>
+        <th style="width:26%">Tipo y Nº de Cuenta</th>
+      </tr></thead>
+      <tbody>
+        <tr><td><input type="text" class="rb-banco" name="Ref.Bancaria - Banco[]"></td><td><input type="text" class="rb-ct" name="Ref.Bancaria - Contacto[]"></td><td><input type="text" class="rb-tel" name="Ref.Bancaria - Teléfono[]"></td><td><input type="text" class="rb-tipo" name="Ref.Bancaria - Tipo y Nro.[]"></td></tr>
+        <tr><td><input type="text" class="rb-banco" name="Ref.Bancaria - Banco[]"></td><td><input type="text" class="rb-ct" name="Ref.Bancaria - Contacto[]"></td><td><input type="text" class="rb-tel" name="Ref.Bancaria - Teléfono[]"></td><td><input type="text" class="rb-tipo" name="Ref.Bancaria - Tipo y Nro.[]"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 9. DECLARACIÓN JURADA -->
+  <div class="section">
+    <div class="section-title">9. Declaración Jurada del Solicitante</div>
+    <div class="dj-box">
+      <div class="dj-intro">El/la abajo firmante declara bajo juramento que:</div>
+      <div class="dj-item" onclick="toggleCheck(this)"><div class="dj-check"></div><span>Todos los datos consignados en este formulario son verídicos y comprobables.</span></div>
+      <div class="dj-item" onclick="toggleCheck(this)"><div class="dj-check"></div><span>La empresa no se encuentra en estado de quiebra, concurso preventivo ni cesación de pagos.</span></div>
+      <div class="dj-item" onclick="toggleCheck(this)"><div class="dj-check"></div><span>No posee cheques rechazados sin regularizar a la fecha de esta solicitud.</span></div>
+      <div class="dj-item" onclick="toggleCheck(this)"><div class="dj-check"></div><span>Acepta que la empresa proveedora realice verificaciones crediticias y comerciales.</span></div>
+      <div class="dj-item" onclick="toggleCheck(this)"><div class="dj-check"></div><span>Entiende que la provisión de datos falsos implica la cancelación inmediata de la cuenta corriente.</span></div>
+
+      <div class="dj-firma">
+        <!-- Firma digital: ocupa todo el ancho -->
+        <div class="sig-wrapper" style="grid-column:span 2;">
+          <label>Firma digital — dibujá con el mouse o el dedo</label>
+          <div class="sig-area" id="sig-area">
+            <canvas id="sig-canvas" height="62" style="width:100%;display:block;cursor:crosshair;touch-action:none;" width="671"></canvas>
+            <div class="sig-hint">✍ Firmar aquí</div>
+          </div>
+          <div class="sig-btns"><button type="button" class="sig-btn clear" onclick="clearSignature()">✕ Borrar firma</button></div>
+        </div>
+        <div class="firma-f"><label>Aclaración (nombre completo)</label><input type="text" id="aclaracion" name="Firma - Aclaración"></div>
+        <div class="firma-f"><label>Fecha</label><input type="date" id="fecha-firma" name="Fecha de Firma"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LUGAR / SELLO -->
+  <div class="fg c2" style="margin-bottom:10px">
+    <div class="field"><label>Lugar</label><input type="text" id="lugar" name="Lugar"></div>
+    <div class="field"><label>Sello de la empresa (opcional)</label><textarea id="sello" rows="2" style="height:32px;"></textarea></div>
+  </div>
+
+  <hr class="divider">
+
+
+  </form>
+
+</div><!-- /page -->
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════════
+// DETECCIÓN DE NAVEGADOR INCOMPATIBLE
+// ═══════════════════════════════════════════════
+(function() {
+  const ua = navigator.userAgent || '';
+  const isInApp = /WhatsApp|Instagram|FBAN|FBAV|FB_IAB|Line\/|MicroMessenger|Twitter|Snapchat|TikTok/i.test(ua);
+  // WebView de Android sin Chrome real
+  const isAndroidWebView = /wv/.test(ua) && /Android/.test(ua);
+  if (isInApp || isAndroidWebView) {
+    document.getElementById('browser-warn').classList.add('show');
+    document.getElementById('bw-url').textContent = location.href;
+  }
+})();
+
+function enviarPorCorreo() {
+  const rs    = g('razon-social') || '(sin razón social)';
+  const nro   = [...document.querySelectorAll('.dig')].map(i=>i.value||'_').join('');
+  const línea = (label, val) => val ? `${label}: ${val}` : '';
+
+  const cuerpo = [
+    '== SOLICITUD DE ALTA – CUENTA CORRIENTE ==',
+    línea('Nº Interno', nro !== '_____' ? nro : ''),
+    línea('Nº Formulario', g('nro-formulario')),
+    línea('Fecha', g('fecha-solicitud')),
+    '',
+    '-- DATOS DEL SOLICITANTE --',
+    línea('Razón Social', g('razon-social')),
+    línea('CUIT', g('cuit')),
+    línea('IIBB', g('iibb')),
+    línea('Condición IVA', g('iva')),
+    línea('Rubro', g('rubro')),
+    línea('Crédito Solicitado $', g('credito-solicitado')),
+    línea('Domicilio Legal', g('dom-legal')),
+    línea('Dom. Entrega', g('dom-entrega')),
+    línea('Teléfono', g('tel-principal')),
+    línea('E-mail', g('email-principal')),
+    línea('Web', g('web')),
+    '',
+    '-- CONTACTOS --',
+    línea('Compras', [g('c-compras-nombre'),g('c-compras-tel'),g('c-compras-email')].filter(Boolean).join(' | ')),
+    línea('Pagos/Adm.', [g('c-pagos-nombre'),g('c-pagos-tel'),g('c-pagos-email')].filter(Boolean).join(' | ')),
+    '',
+    '-- PERSONAS AUTORIZADAS --',
+    línea('Autorizado Compras', [g('aut-compra-nombre'),g('aut-compra-apellido')].filter(Boolean).join(' ') + (g('aut-compra-dni') ? '  DNI: '+g('aut-compra-dni') : '')),
+    línea('Autorizado Retira', [g('aut-retira-nombre'),g('aut-retira-apellido')].filter(Boolean).join(' ') + (g('aut-retira-dni') ? '  DNI: '+g('aut-retira-dni') : '')),
+    '',
+    '-- DATOS BANCARIOS --',
+    línea('Banco', [g('banco'), g('banco-suc') ? 'Suc.'+g('banco-suc') : ''].filter(Boolean).join(' — ')),
+    línea('Tipo Cuenta', g('banco-tipo')),
+    línea('Nº Cuenta', g('banco-nro')),
+    línea('CBU', g('banco-cbu')),
+    línea('Alias', g('banco-alias')),
+    '',
+    '-- DECLARACIÓN JURADA --',
+    línea('Aclaración', g('aclaracion')),
+    línea('Fecha firma', g('fecha-firma')),
+    línea('Lugar', g('lugar')),
+    '',
+    '* Las fotos de DNI y documentos adjuntos deben enviarse por separado a facturacion@sigoespacios.com.ar',
+    '',
+    '-- Sigo Espacios Funcionales --',
+  ].filter(l => l !== undefined).join('\n');
+
+  const asunto = encodeURIComponent(`Alta Cta. Cte. — ${rs}`);
+  const body   = encodeURIComponent(cuerpo);
+  const mailto = `mailto:facturacion@sigoespacios.com.ar?subject=${asunto}&body=${body}`;
+
+  // mailto tiene límite de largo en algunos clientes; avisamos si es muy largo
+  if (mailto.length > 8000) {
+    toast('⚠️ El formulario es muy largo para abrir en el correo. Intentá con el botón principal o completá menos campos.', 'err', 8000);
+    return;
+  }
+  window.location.href = mailto;
+}
+
+function copiarLink() {
+  const url = location.href;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(() => toast('✅ Link copiado. Pegalo en Chrome o Safari.', 'ok', 4000));
+  } else {
+    const el = document.createElement('textarea');
+    el.value = url; document.body.appendChild(el); el.select();
+    document.execCommand('copy'); document.body.removeChild(el);
+    toast('✅ Link copiado. Pegalo en Chrome o Safari.', 'ok', 4000);
+  }
+}
+
+// ═══════════════════════════════════════════════
+// CONFIGURACIÓN — reemplazá estos valores
+// ═══════════════════════════════════════════════
+const DESTINO_EMAIL = 'facturacion@sigoespacios.com.ar';
+
+// ── TOAST ──────────────────────────────────────
+function toast(msg, tipo = 'ok', ms = 4000) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + tipo;
+  setTimeout(() => { t.className = 'toast'; }, ms);
+}
+
+// ── FIRMA DIGITAL ──────────────────────────────
+(function() {
+  const area = document.getElementById('sig-area');
+  const cvs  = document.getElementById('sig-canvas');
+  const ctx  = cvs.getContext('2d');
+  let drawing = false;
+
+  function resize() {
+    const w = area.clientWidth || 400;
+    const saved = ctx.getImageData(0, 0, cvs.width, cvs.height);
+    cvs.width = w; cvs.height = 62;
+    styleCtx(); ctx.putImageData(saved, 0, 0);
+  }
+  function styleCtx() { ctx.strokeStyle='#1a1a1a'; ctx.lineWidth=1.8; ctx.lineCap='round'; ctx.lineJoin='round'; }
+  styleCtx();
+  setTimeout(resize, 60);
+  window.addEventListener('resize', resize);
+
+  function pos(e) {
+    const r = cvs.getBoundingClientRect();
+    const s = e.touches ? e.touches[0] : e;
+    return { x: (s.clientX - r.left) * (cvs.width / r.width), y: (s.clientY - r.top) * (cvs.height / r.height) };
+  }
+  cvs.addEventListener('mousedown',  e => { drawing=true; const p=pos(e); ctx.beginPath(); ctx.moveTo(p.x,p.y); });
+  cvs.addEventListener('mousemove',  e => { if(!drawing) return; const p=pos(e); ctx.lineTo(p.x,p.y); ctx.stroke(); area.classList.add('has-sig'); });
+  cvs.addEventListener('mouseup',    () => drawing=false);
+  cvs.addEventListener('mouseleave', () => drawing=false);
+  cvs.addEventListener('touchstart', e => { e.preventDefault(); drawing=true; const p=pos(e); ctx.beginPath(); ctx.moveTo(p.x,p.y); }, {passive:false});
+  cvs.addEventListener('touchmove',  e => { e.preventDefault(); if(!drawing) return; const p=pos(e); ctx.lineTo(p.x,p.y); ctx.stroke(); area.classList.add('has-sig'); }, {passive:false});
+  cvs.addEventListener('touchend',   () => drawing=false);
+})();
+
+window.clearSignature = function() {
+  const cvs = document.getElementById('sig-canvas');
+  cvs.getContext('2d').clearRect(0, 0, cvs.width, cvs.height);
+  document.getElementById('sig-area').classList.remove('has-sig');
+};
+
+function getSignatureDataURL() {
+  const cvs = document.getElementById('sig-canvas');
+  return document.getElementById('sig-area').classList.contains('has-sig') ? cvs.toDataURL('image/png') : null;
+}
+
+// ── ADJUNTOS DNI ────────────────────────────────
+const dniData = { 'inp-dni-compra': null, 'inp-dni-retira': null, 'inp-afip': null, 'inp-iibb': null, 'inp-estatuto': null, 'inp-otro': null };
+
+window.triggerAttach = id => document.getElementById(id).click();
+
+window.handleAttach = function(input, dropId, prevId) {
+  const file = input.files[0]; if (!file) return;
+  const drop = document.getElementById(dropId);
+  const prev = document.getElementById(prevId);
+  const shortName = file.name.length > 28 ? file.name.substring(0,26)+'…' : file.name;
+  drop.querySelector('.fname').textContent = shortName;
+  drop.classList.add('has-file');
+  fileNames[input.id] = file.name;
+
+  // Aviso PDF bajo el drop zone
+  const warningId = dropId + '-pdf-warn';
+  let warn = document.getElementById(warningId);
+  if (file.type === 'application/pdf') {
+    if (!warn) {
+      warn = document.createElement('div');
+      warn.id = warningId;
+      warn.style.cssText = 'font-size:6.5pt;color:#b05000;background:#fff8f0;border:1px solid #f0c090;padding:4px 7px;margin-top:3px;line-height:1.5;border-radius:2px;';
+      drop.parentElement.appendChild(warn);
+    }
+    warn.innerHTML = '⚠️ <strong>Archivo PDF:</strong> no se puede adjuntar al mail automáticamente. Una vez enviado el formulario, reenviá este archivo por separado a <a href="mailto:facturacion@sigoespacios.com.ar" style="color:#b05000;">facturacion@sigoespacios.com.ar</a> indicando tu razón social.';
+  } else {
+    if (warn) warn.remove();
+  }
+
+  const reader = new FileReader();
+  reader.onload = ev => {
+    dniData[input.id] = ev.target.result;
+    if (file.type.startsWith('image')) { prev.src = ev.target.result; prev.classList.add('visible'); }
+    else { prev.classList.remove('visible'); }
+  };
+  reader.readAsDataURL(file);
+};
+
+window.removeAttach = function(e, inputId, dropId, prevId) {
+  e.stopPropagation();
+  document.getElementById(inputId).value = '';
+  dniData[inputId] = null;
+  const drop = document.getElementById(dropId);
+  drop.classList.remove('has-file');
+  drop.querySelector('.fname').textContent = 'Sin archivo';
+  const prev = document.getElementById(prevId);
+  prev.src = ''; prev.classList.remove('visible');
+};
+
+// ── COMPRIMIR IMAGEN ────────────────────────────
+function compressImage(dataURL, maxW = 480) {
+  return new Promise(resolve => {
+    if (!dataURL || !dataURL.startsWith('data:image')) { resolve(null); return; }
+    const img = new Image();
+    img.onload = () => {
+      const scale = Math.min(1, maxW / img.width);
+      const cvs = document.createElement('canvas');
+      cvs.width  = img.width  * scale;
+      cvs.height = img.height * scale;
+      cvs.getContext('2d').drawImage(img, 0, 0, cvs.width, cvs.height);
+      resolve(cvs.toDataURL('image/jpeg', 0.45));
+    };
+    img.onerror = () => resolve(null);
+    img.src = dataURL;
+  });
+}
+
+// ── FIJAR ACTION DEL FORM DINÁMICAMENTE ─────────
+document.addEventListener('DOMContentLoaded', function() {
+  // acción ya fija en prepararYEnviar, no se necesita action en el form
+});
+
+// ── ENVÍO FORMSPREE ──────────────────────────────
+
+
+async function prepararYEnviar() {
+  const rs = g('razon-social');
+  if (!rs) { toast('⚠️ Completá al menos la Razón Social antes de enviar.', 'err', 5000); return; }
+
+  const btn = document.getElementById('btn-enviar');
+  btn.disabled = true;
+  btn.textContent = '⏳ Enviando...';
+
+  try {
+    // Armar campos en orden lógico (solo campos con valor)
+    const fd = new FormData();
+    const add = (k, v) => { if (v && String(v).trim()) fd.append(k, String(v).trim()); };
+
+    fd.append('_subject', 'Alta Cta. Cte. — ' + rs);
+
+    const nro = [...document.querySelectorAll('.dig')].map(i=>i.value||'').join('').trim();
+    add('Nro. Interno', nro);
+    add('Nro. Formulario', g('nro-formulario'));
+    add('Fecha de Solicitud', g('fecha-solicitud'));
+
+    add('Razón Social', g('razon-social'));
+    add('CUIT', g('cuit'));
+    add('IIBB', g('iibb'));
+    add('Condición IVA', g('iva'));
+    add('Rubro', g('rubro'));
+    add('Crédito Solicitado $', g('credito-solicitado'));
+    add('Domicilio Legal', g('dom-legal'));
+    add('Domicilio Entrega', g('dom-entrega'));
+    add('Teléfono', g('tel-principal'));
+    add('E-mail', g('email-principal'));
+    add('Web', g('web'));
+
+    add('Compras - Nombre', g('c-compras-nombre'));
+    add('Compras - Tel.', g('c-compras-tel'));
+    add('Compras - E-mail', g('c-compras-email'));
+    add('Pagos - Nombre', g('c-pagos-nombre'));
+    add('Pagos - Tel.', g('c-pagos-tel'));
+    add('Pagos - E-mail', g('c-pagos-email'));
+
+    add('Autorizado Comprar', [g('aut-compra-nombre'), g('aut-compra-apellido')].filter(Boolean).join(' '));
+    add('Autorizado Comprar DNI', g('aut-compra-dni'));
+    add('Autorizado Retirar', [g('aut-retira-nombre'), g('aut-retira-apellido')].filter(Boolean).join(' '));
+    add('Autorizado Retirar DNI', g('aut-retira-dni'));
+
+    add('Banco', [g('banco'), g('banco-suc') ? 'Suc.'+g('banco-suc') : ''].filter(Boolean).join(' '));
+    add('Tipo de Cuenta', g('banco-tipo'));
+    add('Nro. Cuenta', g('banco-nro'));
+    add('CBU', g('banco-cbu'));
+    add('Alias', g('banco-alias'));
+
+    // Referencias comerciales (solo filas con datos)
+    [0,1,2].forEach(i => {
+      const rs2 = document.querySelectorAll('[name="Ref.Comercial - Empresa[]"]')[i]?.value;
+      if (rs2) add('Ref. Comercial '+(i+1), [rs2,
+        document.querySelectorAll('[name="Ref.Comercial - Contacto[]"]')[i]?.value,
+        document.querySelectorAll('[name="Ref.Comercial - Teléfono[]"]')[i]?.value,
+        document.querySelectorAll('[name="Ref.Comercial - E-mail[]"]')[i]?.value,
+      ].filter(Boolean).join(' | '));
+    });
+
+    // Declaración jurada
+    const djLabels = ['Datos verídicos','Sin quiebra','Sin cheques rechazados','Acepta verificaciones','Acepta cancelación'];
+    document.querySelectorAll('.dj-item').forEach((item, i) => {
+      if (item.querySelector('.dj-check')?.classList.contains('checked'))
+        add('DJ - ' + djLabels[i], '✓ Marcado');
+    });
+
+    add('Firmante', g('aclaracion'));
+    add('Fecha Firma', g('fecha-firma'));
+    add('Lugar', g('lugar'));
+
+    // Firma digital como imagen
+    const sigURL = getSignatureDataURL();
+    if (sigURL) {
+      const b64 = sigURL.split(',')[1];
+      const bytes = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+      const blob = new Blob([bytes], {type:'image/png'});
+      fd.append('Firma Digital', blob, 'firma.png');
+    }
+
+    // Archivos adjuntos
+    ['inp-dni-compra','inp-dni-retira','inp-afip','inp-iibb','inp-estatuto','inp-otro'].forEach(id => {
+      const inp = document.getElementById(id);
+      if (inp?.files[0]?.size > 0) fd.append(inp.name || id, inp.files[0]);
+    });
+
+    // Nota sobre documentos
+    const docPendientes = ['inp-dni-compra','inp-dni-retira','inp-afip','inp-iibb','inp-estatuto','inp-otro']
+      .map(id => document.getElementById(id))
+      .filter(inp => inp?.files[0]?.size > 0)
+      .map(inp => fileNames[inp.id] || inp.files[0].name)
+      .join(', ');
+    if (docPendientes) add('Documentos adjuntos', docPendientes);
+
+    const res = await fetch('https://formspree.io/f/mqejbedz', {
+      method: 'POST',
+      body: fd,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      document.querySelector('.toolbar').style.display = 'none';
+      document.querySelector('.page').innerHTML = `
+        <div style="text-align:center;padding:70px 20px;font-family:'Barlow',Arial,sans-serif;">
+          <div style="font-size:52pt;margin-bottom:16px;">✅</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:20pt;font-weight:700;color:#4a4a4a;margin-bottom:12px;letter-spacing:1px;">FORMULARIO ENVIADO</div>
+          <div style="font-size:11pt;color:#555;line-height:1.7;margin-bottom:24px;">
+            La solicitud fue recibida correctamente.<br>
+            El equipo de <strong>Sigo Espacios Funcionales</strong> se pondrá en contacto a la brevedad.
+          </div>
+          <div style="background:#f0f0f0;border:1px solid #ddd;padding:12px 24px;display:inline-block;font-size:9pt;color:#666;border-radius:4px;">
+            Consultas: <a href="mailto:facturacion@sigoespacios.com.ar" style="color:#4a4a4a;font-weight:600;">facturacion@sigoespacios.com.ar</a>
+          </div>
+        </div>`;
+    } else {
+      const data = await res.json().catch(()=>({}));
+      throw new Error(data.errors?.map(e=>e.message).join(', ') || 'Error '+res.status);
+    }
+  } catch(err) {
+    console.error(err);
+    toast('❌ Error al enviar: ' + err.message, 'err', 10000);
+    btn.disabled = false;
+    btn.textContent = '📧 Enviar por e-mail';
+  }
+}
+
+
+// ── PANTALLA DE ÉXITO ────────────────────────────
+(function() {
+  if (window.location.search.includes('enviado=ok')) {
+    document.addEventListener('DOMContentLoaded', function() {
+      const toolbar = document.querySelector('.toolbar');
+      const page    = document.querySelector('.page');
+      if (toolbar) toolbar.style.display = 'none';
+      if (page) page.innerHTML = `
+        <div style="text-align:center;padding:70px 20px;font-family:'Barlow',Arial,sans-serif;">
+          <div style="font-size:52pt;margin-bottom:16px;">✅</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:20pt;font-weight:700;color:#4a4a4a;margin-bottom:12px;letter-spacing:1px;">FORMULARIO ENVIADO</div>
+          <div style="font-size:11pt;color:#555;margin-bottom:8px;line-height:1.6;">La solicitud fue recibida correctamente.</div>
+          <div style="font-size:9.5pt;color:#888;margin-bottom:32px;">El equipo de <strong>Sigo Espacios Funcionales</strong> se pondrá en contacto a la brevedad.</div>
+          <div style="background:#f0f0f0;border:1px solid #ddd;padding:12px 24px;display:inline-block;font-size:9pt;color:#666;border-radius:4px;">
+            Consultas: <a href="mailto:facturacion@sigoespacios.com.ar" style="color:#4a4a4a;font-weight:600;">facturacion@sigoespacios.com.ar</a>
+          </div>
+        </div>`;
+    });
+  }
+})();
+
+// ── RECOLECTAR DATOS (g helper) ─────────────────
+function g(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
+
+// Nombres de archivos para mostrar en el email (incluyendo PDFs)
+const fileNames = {};
+function buildEmailHTML(sigURL, imgs) {
+  const nroInterno = [...document.querySelectorAll('.dig')].map(i=>i.value||'').join('').trim();
+
+  // row solo se agrega si tiene valor
+  function row(label, value) {
+    if (!value || value === ' ' || value.trim() === '') return '';
+    return `<tr>
+      <td style="padding:5px 12px 5px 0;font-size:8.5pt;color:#6b6b6b;font-weight:600;white-space:nowrap;vertical-align:top;width:35%">${label}</td>
+      <td style="padding:5px 0;font-size:8.5pt;color:#1a1a1a;border-bottom:1px solid #eeeeee;">${value}</td>
+    </tr>`;
+  }
+  function section(title, content) {
+    if (!content.trim()) return '';
+    return `<tr><td colspan="2" style="background:#eeeeee;border-left:4px solid #4a4a4a;padding:6px 10px;font-weight:700;font-size:9pt;color:#4a4a4a;letter-spacing:1px;text-transform:uppercase;margin-top:8px;">${title}</td></tr>${content}`;
+  }
+  function imgBlock(label, url, filename) {
+    if (url) {
+      return `<tr><td colspan="2" style="padding:8px 0 4px;">
+        <div style="font-size:8pt;font-weight:600;color:#6b6b6b;margin-bottom:4px;">${label}</div>
+        <img src="${url}" style="max-width:320px;max-height:220px;border:1px solid #ccc;display:block;border-radius:2px;">
+      </td></tr>`;
+    } else if (filename) {
+      return `<tr><td colspan="2" style="padding:6px 0;">
+        <div style="font-size:8pt;font-weight:600;color:#6b6b6b;">${label}</div>
+        <div style="font-size:8pt;color:#2c2c2c;background:#f5f5f5;padding:5px 8px;border:1px solid #ddd;margin-top:3px;border-radius:2px;">📎 ${filename} <span style="color:#888;font-size:7.5pt;">(PDF — reenviar por separado)</span></div>
+      </td></tr>`;
+    }
+    return '';
+  }
+
+  // Referencias comerciales (solo filas completas)
+  const rcRows = [0,1,2].map(i => {
+    const rs = document.querySelectorAll('.rc-rs')[i]?.value||'';
+    if (!rs) return '';
+    const ct  = document.querySelectorAll('.rc-ct')[i]?.value||'';
+    const tel = document.querySelectorAll('.rc-tel')[i]?.value||'';
+    const ml  = document.querySelectorAll('.rc-mail')[i]?.value||'';
+    return `<tr><td colspan="2" style="font-size:8pt;padding:4px 0;border-bottom:1px solid #eee;color:#1a1a1a;">${[rs,ct,tel,ml].filter(Boolean).join(' &nbsp;|&nbsp; ')}</td></tr>`;
+  }).join('');
+
+  const rbRows = [0,1].map(i => {
+    const b = document.querySelectorAll('.rb-banco')[i]?.value||'';
+    if (!b) return '';
+    const ct  = document.querySelectorAll('.rb-ct')[i]?.value||'';
+    const tel = document.querySelectorAll('.rb-tel')[i]?.value||'';
+    const tp  = document.querySelectorAll('.rb-tipo')[i]?.value||'';
+    return `<tr><td colspan="2" style="font-size:8pt;padding:4px 0;border-bottom:1px solid #eee;color:#1a1a1a;">${[b,ct,tel,tp].filter(Boolean).join(' &nbsp;|&nbsp; ')}</td></tr>`;
+  }).join('');
+
+  const sigImg = sigURL
+    ? `<tr><td colspan="2" style="padding:8px 0 4px;"><div style="font-size:8pt;font-weight:600;color:#6b6b6b;margin-bottom:4px;">Firma digital</div><img src="${sigURL}" style="max-width:360px;max-height:90px;border:1px solid #ccc;display:block;background:#fff;border-radius:2px;"></td></tr>`
+    : '';
+
+  const bancoVal = [g('banco'), g('banco-suc') ? 'Suc. '+g('banco-suc') : ''].filter(Boolean).join(' — ');
+
+  return `<div style="font-family:Arial,Helvetica,sans-serif;max-width:660px;margin:0 auto;color:#1a1a1a;">
+  <div style="background:#4a4a4a;color:#ffffff;padding:14px 18px;">
+    <div style="font-size:15pt;font-weight:700;letter-spacing:1px;">SOLICITUD DE ALTA – CUENTA CORRIENTE</div>
+    <div style="font-size:9pt;opacity:.8;margin-top:3px;">Sigo Espacios Funcionales</div>
+  </div>
+  <table style="width:100%;border-collapse:collapse;padding:0;">
+    ${section('Solicitud',
+      row('Nº Interno', nroInterno)+
+      row('Nº Formulario', g('nro-formulario'))+
+      row('Fecha', g('fecha-solicitud'))
+    )}
+    ${section('1. Datos del Solicitante',
+      row('Razón Social', g('razon-social'))+
+      row('CUIT', g('cuit'))+
+      row('IIBB', g('iibb'))+
+      row('Condición IVA', g('iva'))+
+      row('Rubro / Actividad', g('rubro'))+
+      row('Crédito Solicitado', g('credito-solicitado') ? '$ '+g('credito-solicitado') : '')+
+      row('Domicilio Legal', g('dom-legal'))+
+      row('Dom. Entrega', g('dom-entrega'))+
+      row('Teléfono', g('tel-principal'))+
+      row('E-mail', g('email-principal'))+
+      row('Web / Redes', g('web'))
+    )}
+    ${section('2. Contactos',
+      row('Compras', [g('c-compras-nombre'),g('c-compras-tel'),g('c-compras-email')].filter(Boolean).join(' | '))+
+      row('Pagos / Adm.', [g('c-pagos-nombre'),g('c-pagos-tel'),g('c-pagos-email')].filter(Boolean).join(' | '))
+    )}
+    ${section('3. Personas Autorizadas',
+      row('Autorizado Compras', [g('aut-compra-nombre'),g('aut-compra-apellido')].filter(Boolean).join(' ')+(g('aut-compra-dni') ? ' — DNI: '+g('aut-compra-dni') : ''))+
+      row('Autorizado Retira', [g('aut-retira-nombre'),g('aut-retira-apellido')].filter(Boolean).join(' ')+(g('aut-retira-dni') ? ' — DNI: '+g('aut-retira-dni') : ''))
+    )}
+    ${section('4. Fotos DNI',
+      imgBlock('DNI — Autorizado para Comprar', imgs.dniCompra, fileNames['inp-dni-compra'])+
+      imgBlock('DNI — Autorizado para Retirar', imgs.dniRetira, fileNames['inp-dni-retira'])
+    )}
+    ${section('5. Documentación Adjunta',
+      imgBlock('Constancia AFIP', imgs.afip, fileNames['inp-afip'])+
+      imgBlock('Constancia IIBB', imgs.iibb, fileNames['inp-iibb'])+
+      imgBlock('Estatuto / Contrato Social', imgs.estatuto, fileNames['inp-estatuto'])+
+      imgBlock('Otro documento', imgs.otro, fileNames['inp-otro'])
+    )}
+    ${section('6. Datos Bancarios',
+      row('Banco', bancoVal)+
+      row('Tipo de Cuenta', g('banco-tipo'))+
+      row('Nº Cuenta', g('banco-nro'))+
+      row('CBU', g('banco-cbu'))+
+      row('Alias', g('banco-alias'))
+    )}
+    ${rcRows ? section('7. Referencias Comerciales', rcRows) : ''}
+    ${rbRows ? section('8. Referencias Bancarias', rbRows) : ''}
+    ${section('9. Declaración Jurada y Firma',
+      row('Aclaración', g('aclaracion'))+
+      row('Fecha firma', g('fecha-firma'))+
+      row('Lugar', g('lugar'))+
+      sigImg
+    )}
+  </table>
+  <div style="margin-top:12px;padding:8px 14px;background:#f5f5f5;border-top:2px solid #4a4a4a;font-size:7.5pt;color:#888;">
+    Alta de Cuenta Corriente — Sigo Espacios Funcionales &nbsp;|&nbsp; facturacion@sigoespacios.com.ar
+  </div>
+</div>`;
+}
+
+// ── ENVIAR FORMULARIO ───────────────────────────
+function enviarPorCorreo() {
+  const rs  = g('razon-social');
+  if (!rs) { toast('⚠️ Completá al menos la Razón Social antes de enviar.', 'err', 5000); return; }
+
+  const nro   = [...document.querySelectorAll('.dig')].map(i=>i.value||'').join('').trim();
+  const L     = (label, val) => val ? `${label}: ${val}` : '';
+  const blq   = (titulo, ...filas) => { const f = filas.filter(Boolean).join('\n'); return f ? `\n${'─'.repeat(35)}\n${titulo}\n${'─'.repeat(35)}\n${f}` : ''; };
+
+  // Adjuntos PDF para avisar
+  const pdfs = Object.entries(fileNames).filter(([,n])=>n&&n.toLowerCase().endsWith('.pdf')).map(([,n])=>n);
+  const avisoAdj = [
+    ...Object.values(fileNames).filter(n=>n&&!n.toLowerCase().endsWith('.pdf')).length
+      ? ['✔ Imágenes adjuntas: se envían por separado (ver instrucción abajo)'] : [],
+    ...pdfs.length ? [`✔ PDFs adjuntos: ${pdfs.join(', ')} — enviálos también por separado`] : []
+  ].join('\n');
+
+  const cuerpo = [
+    '╔══════════════════════════════════════╗',
+    '     SOLICITUD DE ALTA – CTA. CORRIENTE',
+    '          Sigo Espacios Funcionales',
+    '╚══════════════════════════════════════╝',
+    blq('DATOS DE LA SOLICITUD',
+      L('Nº Interno', nro),
+      L('Nº Formulario', g('nro-formulario')),
+      L('Fecha', g('fecha-solicitud'))
+    ),
+    blq('1. DATOS DEL SOLICITANTE',
+      L('Razón Social', g('razon-social')),
+      L('CUIT', g('cuit')),
+      L('IIBB', g('iibb')),
+      L('Condición IVA', g('iva')),
+      L('Rubro', g('rubro')),
+      L('Crédito Solicitado $', g('credito-solicitado')),
+      L('Domicilio Legal', g('dom-legal')),
+      L('Dom. Entrega', g('dom-entrega')),
+      L('Teléfono', g('tel-principal')),
+      L('E-mail', g('email-principal')),
+      L('Web', g('web'))
+    ),
+    blq('2. CONTACTOS',
+      L('Compras', [g('c-compras-nombre'),g('c-compras-tel'),g('c-compras-email')].filter(Boolean).join(' | ')),
+      L('Pagos / Adm.', [g('c-pagos-nombre'),g('c-pagos-tel'),g('c-pagos-email')].filter(Boolean).join(' | '))
+    ),
+    blq('3. PERSONAS AUTORIZADAS',
+      L('Compras — Nombre', [g('aut-compra-nombre'),g('aut-compra-apellido')].filter(Boolean).join(' ')),
+      L('Compras — DNI', g('aut-compra-dni')),
+      L('Retira — Nombre', [g('aut-retira-nombre'),g('aut-retira-apellido')].filter(Boolean).join(' ')),
+      L('Retira — DNI', g('aut-retira-dni'))
+    ),
+    blq('5. DATOS BANCARIOS',
+      L('Banco', g('banco')),
+      L('Sucursal', g('banco-suc')),
+      L('Tipo Cuenta', g('banco-tipo')),
+      L('Nº Cuenta', g('banco-nro')),
+      L('CBU', g('banco-cbu')),
+      L('Alias', g('banco-alias'))
+    ),
+    blq('9. DECLARACIÓN JURADA',
+      L('Firmante', g('aclaracion')),
+      L('Fecha firma', g('fecha-firma')),
+      L('Lugar', g('lugar'))
+    ),
+    avisoAdj ? `\n${'─'.repeat(35)}\nDOCUMENTACIÓN ADJUNTA\n${'─'.repeat(35)}\n${avisoAdj}` : '',
+    '\n' + '─'.repeat(35),
+    '⚠️  IMPORTANTE: Las fotos de DNI y',
+    'documentos adjuntos deben enviarse',
+    'por separado respondiendo este mail.',
+    '─'.repeat(35),
+  ].filter(Boolean).join('\n');
+
+  const asunto  = encodeURIComponent(`Alta Cta. Cte. — ${rs}`);
+  const body    = encodeURIComponent(cuerpo);
+  const mailto  = `mailto:${DESTINO_EMAIL}?subject=${asunto}&body=${body}`;
+
+  if (mailto.length > 15000) {
+    // Versión reducida si el link es muy largo
+    const bodyCorto = encodeURIComponent(`Solicitud de Alta Cta. Cte. — ${rs}\n\nCUIL/CUIT: ${g('cuit')}\nTeléfono: ${g('tel-principal')}\nE-mail: ${g('email-principal')}\n\n(Formulario completo adjunto)`);
+    window.open(`mailto:${DESTINO_EMAIL}?subject=${asunto}&body=${bodyCorto}`);
+    toast('⚠️ Formulario muy largo. Se abrió el correo con datos básicos. Adjuntá el formulario completo manualmente.', 'err', 10000);
+    return;
+  }
+  window.open(mailto);
+  toast('✅ Se abrió tu correo electrónico. Revisá que el destinatario sea correcto y presioná Enviar.', 'ok', 8000);
+
+  // Recordatorio PDFs
+  const pdfNames = Object.entries(fileNames).filter(([,n])=>n&&n.toLowerCase().endsWith('.pdf')).map(([,n])=>n);
+  if (pdfNames.length) {
+    setTimeout(() => toast(`📎 Recordá adjuntar al mail los PDFs: ${pdfNames.join(', ')}`, 'err', 10000), 9000);
+  }
+}
+
+async function enviarFormulario() { enviarPorCorreo(); }
+
+// ── LOGO ────────────────────────────────────────
+function cargarLogo(e) {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => { document.getElementById('logo-img').src = ev.target.result; };
+  reader.readAsDataURL(file);
+}
+
+// ── CHECKBOXES DJ ───────────────────────────────
+const djHiddenMap = [null, 'dj-h1', 'dj-h2', 'dj-h3', 'dj-h4', 'dj-h5'];
+function toggleCheck(el) {
+  const b = el.querySelector('.dj-check');
+  b.classList.toggle('checked');
+  b.textContent = b.classList.contains('checked') ? '✓' : '';
+  // Actualizar hidden input correspondiente
+  const items = document.querySelectorAll('.dj-item');
+  items.forEach((item, i) => {
+    const hid = document.getElementById(djHiddenMap[i+1]);
+    if (hid) hid.value = item.querySelector('.dj-check').classList.contains('checked') ? 'Marcado ✓' : 'No marcado';
+  });
+}
+
+// ── RADIO INTERNOS ──────────────────────────────
+function toggleRadio(groupId, el) {
+  document.getElementById(groupId).querySelectorAll('.check-item').forEach(item => {
+    const b = item.querySelector('.i-check'); b.classList.remove('checked'); b.textContent = '';
+  });
+  const b = el.querySelector('.i-check'); b.classList.add('checked'); b.textContent = '✓';
+}
+
+// ── DÍGITOS Nº INTERNO ──────────────────────────
+document.querySelectorAll('.dig').forEach((inp, i, arr) => {
+  inp.addEventListener('input', () => { if (inp.value.length >= 1 && i < arr.length-1) arr[i+1].focus(); });
+});
+
+// ── LIMPIAR TODO ────────────────────────────────
+function limpiarFormulario() {
+  if (!confirm('¿Limpiar todos los datos del formulario?')) return;
+  document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="date"], textarea').forEach(el => el.value = '');
+  document.querySelectorAll('select').forEach(el => el.selectedIndex = 0);
+  document.querySelectorAll('.dj-check, .i-check').forEach(b => { b.classList.remove('checked'); b.textContent = ''; });
+  clearSignature();
+  ['inp-dni-compra','inp-dni-retira','inp-afip','inp-iibb','inp-estatuto','inp-otro'].forEach(id => {
+    const inp = document.getElementById(id); if(inp) inp.value = '';
+    dniData[id] = null;
+    delete fileNames[id];
+  });
+  ['drop-dni-compra','drop-dni-retira','drop-afip','drop-iibb','drop-estatuto','drop-otro'].forEach(id => {
+    const d = document.getElementById(id); if(!d) return;
+    d.classList.remove('has-file'); d.querySelector('.fname').textContent = 'Sin archivo';
+    const warn = document.getElementById(id + '-pdf-warn');
+    if (warn) warn.remove();
+  });
+  ['prev-dni-compra','prev-dni-retira','prev-afip','prev-iibb','prev-estatuto','prev-otro'].forEach(id => {
+    const p = document.getElementById(id); if(p) { p.src=''; p.classList.remove('visible'); }
+  });
+}
+</script>
+
+</body></html>
